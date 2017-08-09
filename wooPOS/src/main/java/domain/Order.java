@@ -1,5 +1,7 @@
+package domain;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -7,9 +9,10 @@ import java.util.ArrayList;
  */
 public class Order {
     
-    private ArrayList products;
+    private List<Product> products;
 
     public Order() {
+        this.products = new ArrayList();
     }
     
     public void addProduct (Product product) {
@@ -19,11 +22,11 @@ public class Order {
     public int calculateOrderTotal() {
         
         int price = 0;
-        
-        while (this.products.iterator().hasNext()) {
-            price += this.products.iterator().next().
+
+        for (Product currProduct : this.products) {
+            price += currProduct.getPrice();
         }
-        
+                
         return price;
     }
     
