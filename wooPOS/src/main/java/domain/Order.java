@@ -21,7 +21,7 @@ public class Order {
         int price = 0;
         
         while (this.products.iterator().hasNext()) {
-            price += this.products.iterator().next().getPrice();
+            price += this.products.iterator().next().
         }
         
         return price;
