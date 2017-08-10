@@ -13,14 +13,14 @@ package domain;
 public class Product {
     
     private final String displayName;
-    private final int price;
+    private final double price;
 
     public Product(String displayName, int price) {
         this.displayName = displayName;
         this.price = price;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
