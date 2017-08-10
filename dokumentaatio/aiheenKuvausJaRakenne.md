@@ -12,3 +12,8 @@
 - Tuotteen poistaminen avoimelta tilaukselta
 - Avoimen tilauksen päättäminen ja kuittaaminen maksetuksi
 - Myyntipäivän lopetus ja myyntiraportin tulostus
+
+
+**Luokkakaavio**:
+
+![Alt text](/dokumentaatio/woopos_class_diagram.png "Luokkakaavio / Class Diagram")
