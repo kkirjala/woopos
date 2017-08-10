@@ -11,4 +11,6 @@ package interfaces;
  */
 public interface ShoppingCartListener {
     
+    public void onShoppingCartUpdated();
+    
 }
