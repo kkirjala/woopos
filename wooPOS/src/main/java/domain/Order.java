@@ -10,24 +10,17 @@ import java.util.List;
 public class Order {
     
     private List<Product> products;
+    private OrderStatus orderStatus;
+    private int orderTotal;
 
-    public Order() {
-        this.products = new ArrayList();
+    public Order(List<Product> products, int orderTotal) {
+        this.products = products;
+        this.orderStatus = OrderStatus.NEW;
+        this.orderTotal = orderTotal;
     }
-    
-    public void addProduct (Product product) {
-        this.products.add(product);
-    }
-    
-    public int calculateOrderTotal() {
-        
-        int price = 0;
 
-        for (Product currProduct : this.products) {
-            price += currProduct.getPrice();
-        }
-                
-        return price;
+    public void changeOrderStatus(OrderStatus newStatus) {
+        this.orderStatus = newStatus;
     }
     
     

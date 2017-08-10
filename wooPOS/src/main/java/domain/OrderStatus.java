@@ -11,6 +11,7 @@ package domain;
  */
 public enum OrderStatus {
     
+    CANCELLED,
     NEW,
     OPEN,
     AWAITING_PAYMENT,
