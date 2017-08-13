@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 5,
+      <title>File: 11,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,6 +46,34 @@ under the License.
           <tbody>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#backend.NitriteDatabase.java">backend/NitriteDatabase.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#application.Main.java">application/Main.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#domain.Product.java">domain/Product.java</a>
                 </td>
                 <td>
@@ -61,6 +89,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#domain.Order.java">domain/Order.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#application.WooPOS.java">application/WooPOS.java</a>
                 </td>
                 <td>
                   0
@@ -102,7 +144,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#interfaces.PosBackend.java">interfaces/PosBackend.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#interfaces.PaymentMethod.java">interfaces/PaymentMethod.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#domain.ShoppingCart.java">domain/ShoppingCart.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#backend.WooCommerceDatabase.java">backend/WooCommerceDatabase.java</a>
                 </td>
                 <td>
                   0
