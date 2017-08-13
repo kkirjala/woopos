@@ -5,7 +5,6 @@
  */
 package domain;
 
-import com.sun.media.jfxmedia.logging.Logger;
 import interfaces.ShoppingCartListener;
 import java.util.ArrayList;
 import java.util.List;
