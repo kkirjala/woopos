@@ -1,5 +1,6 @@
 package backend;
 
+import com.icoderman.woocommerce.WooCommerce;
 import com.icoderman.woocommerce.WooCommerceAPI;
 import com.icoderman.woocommerce.oauth.OAuthConfig;
 import domain.Order;
@@ -17,7 +18,7 @@ public class WooCommerceDatabase implements PosBackend {
     @Override
     public void onPosStartup() {
         OAuthConfig config = new OAuthConfig("http://woocommerce.com", "consumerKey", "consumerSecret");
-        WooCommerceDatabase wooCommerce = new WooCommerceAPI(config);
+        WooCommerce wooCommerce = new WooCommerceAPI(config);
     }
 
     @Override
