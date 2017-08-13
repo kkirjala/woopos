@@ -5,6 +5,7 @@ import domain.Product;
 import domain.ShoppingCart;
 import interfaces.PosBackend;
 import java.util.List;
+import org.dizitart.no2.Nitrite;
 
 /**
  *
@@ -12,41 +13,44 @@ import java.util.List;
  */
 public class NitriteDatabase implements PosBackend {
 
+    private Nitrite db;
+
     @Override
     public void onPosStartup() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.db = Nitrite.builder()
+                .compressed()
+                .filePath("woopos.db")
+                .openOrCreate("user", "password");
     }
 
     @Override
     public void onPosClose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.db.close();
     }
 
     @Override
     public List<Product> getProducts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public void addProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public void deleteProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     @Override
     public Order createOrder(ShoppingCart shoppingCart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
 
     @Override
     public Order getOrder(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return null;
     }
-    
-    
-    
+
 }
