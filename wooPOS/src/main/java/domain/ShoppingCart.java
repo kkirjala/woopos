@@ -15,7 +15,6 @@ import java.util.List;
  */
 public class ShoppingCart {
 
-    
     private List<Product> products;
     private double totalPrice;
     private List<Integer> discountsPercentage;
@@ -29,6 +28,14 @@ public class ShoppingCart {
         this.discountsPercentage = new ArrayList<>();
     }
 
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
     public void addProduct(Product product) {
         this.products.add(product);
         this.calculateCartTotal();
@@ -36,6 +43,13 @@ public class ShoppingCart {
 
     public void removeProduct(Product product) {
         this.products.remove(product);
+        this.calculateCartTotal();
+    }
+
+    public void addDiscountPercentage(int discountPercentage) {
+        if (discountPercentage > 0) {
+            this.discountsPercentage.add(discountPercentage);
+        }
         this.calculateCartTotal();
     }
 
@@ -50,12 +64,10 @@ public class ShoppingCart {
 
         // discounts (%)
         for (int currDiscount : this.discountsPercentage) {
-
             if (currDiscount > 0) {
                 this.totalPrice *= currDiscount;
                 this.totalPrice /= 100;
-            }            
-
+            }
         }
 
         // discounts (fixed amounts)
@@ -65,23 +77,6 @@ public class ShoppingCart {
 
         this.fireOnShoppingCartUpdated();
 
-    }
-
-    /* 
-        A method for adding a discount-% to the list of discounts
-        applied to the shopping cart 
-     */
-    public void applyDiscountPercentage(int discountPercentage) {
-        this.discountsPercentage.add(discountPercentage);
-        this.calculateCartTotal();
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public List<Product> getProducts() {
-        return products;
     }
 
     public void addShoppingCartListener(ShoppingCartListener listener) {
