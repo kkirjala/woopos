@@ -8,20 +8,20 @@ import java.util.List;
  * @author kkirjala
  */
 public class Order {
-    
+
     private List<Product> products;
     private OrderStatus orderStatus;
-    private int orderTotal;
+    private double orderTotal;
 
-    public Order(List<Product> products, int orderTotal) {
+    public Order(List<Product> products, double orderTotal) {
         this.products = products;
         this.orderStatus = OrderStatus.NEW;
         this.orderTotal = orderTotal;
     }
 
-    public void changeOrderStatus(OrderStatus newStatus) {
-        this.orderStatus = newStatus;
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
-    
+
     
 }
