@@ -7,6 +7,7 @@ package application;
 
 import interfaces.PaymentMethod;
 import interfaces.PosBackend;
+import interfaces.PosGUI;
 import java.util.List;
 
 /**
@@ -22,20 +23,31 @@ public class WooPOS {
     
      */
     private PosBackend backend;
+    private PosGUI ui;
     private List<PaymentMethod> paymentMethods;
 
     public WooPOS() {
-        
+
         /* TODO:
-        - parse config file
-        - get backend w/ login credentials
-        - get payment methods
-        */
+         - parse config file
+         - get backend w/ login credentials
+         - get payment methods
+        
+         - call constructor: this(backend, ui, paymentMethods);
+         */
+        
+        
+    }
+
+    public WooPOS(PosBackend backend, PosGUI ui, List<PaymentMethod> paymentMethods) {
+
+        this.backend = backend;
+        this.ui = ui;
+        this.paymentMethods = paymentMethods;
 
         fireOnPosStartup();
-        
+
         // TODO: wait for the UI to close
-        
         fireOnPosClose();
 
     }
@@ -51,8 +63,8 @@ public class WooPOS {
     }
 
     public void fireOnPosClose() {
-        
-        this.backend.onPosClose();        
+
+        this.backend.onPosClose();
 
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
             currPaymentMethod.onPosClose();
