@@ -22,7 +22,7 @@ public class DummyDatabase implements PosBackend {
         
         // generate 20 random Products
         for (int i = 1; i < 20; i++) {
-            this.products.add(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
+            this.addProduct(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
         }
         
     }
