@@ -10,7 +10,10 @@ package interfaces;
  * @author kkirjala
  */
 public interface ShoppingCartListener {
-    
+
+    /**
+     * Method that is called everytime the ShoppingCart's contents change.
+     */
     public void onShoppingCartUpdated();
-    
+
 }
