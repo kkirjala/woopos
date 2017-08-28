@@ -59,6 +59,8 @@ public class WooPOS {
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
             currPaymentMethod.onPosStartup();
         }
+        
+        this.ui.onPosStartup();
 
     }
 
@@ -69,6 +71,8 @@ public class WooPOS {
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
             currPaymentMethod.onPosClose();
         }
+        
+        this.ui.onPosClose();
 
     }
 

@@ -5,6 +5,7 @@
  */
 package domain;
 
+import controller.ShoppingCartController;
 import model.ShoppingCart;
 import model.Product;
 import java.util.List;
@@ -19,11 +20,12 @@ import static org.junit.Assert.*;
  *
  * @author kkirjala
  */
-public class ShoppingCartTest {
+public class ShoppingCartControllerTest {
 
-    private ShoppingCart shoppingCart;
+    private ShoppingCartController controller;
+    private ShoppingCart cart;
 
-    public ShoppingCartTest() {
+    public ShoppingCartControllerTest() {
     }
 
     @BeforeClass
@@ -37,14 +39,15 @@ public class ShoppingCartTest {
     @Before
     public void setUp() {
 
-        this.shoppingCart = new ShoppingCart();
+        this.controller = new ShoppingCartController();
+        this.cart = controller.createShoppingCart();
 
     }
 
     @After
     public void tearDown() {
 
-        this.shoppingCart = null;
+        this.cart = null;
 
     }
 
@@ -55,15 +58,15 @@ public class ShoppingCartTest {
         Product firstProduct = new Product("First Product", 2);
         Product secondProduct = new Product("Second Product", 10);
 
-        shoppingCart.addProduct(firstProduct);
+        controller.addProduct(cart, firstProduct);
 
         // TODO: 
         // add product. add second product, check price
-        assertEquals(2, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(2, cart.getTotalPrice(), 0.0);
 
-        shoppingCart.addProduct(secondProduct);
+        controller.addProduct(cart, secondProduct);
 
-        assertEquals(12, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(12, cart.getTotalPrice(), 0.0);
 
     }
 
@@ -74,18 +77,18 @@ public class ShoppingCartTest {
         Product firstProduct = new Product("First Product", 2);
         Product secondProduct = new Product("Second Product", 10);
 
-        shoppingCart.addProduct(firstProduct);
-        shoppingCart.addProduct(secondProduct);
+        controller.addProduct(cart, firstProduct);
+        controller.addProduct(cart, secondProduct);
 
-        assertEquals(12.0, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(12.0, cart.getTotalPrice(), 0.0);
 
-        shoppingCart.removeProduct(secondProduct);
+        controller.removeProduct(cart, secondProduct);
 
-        assertEquals(2.0, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(2.0, cart.getTotalPrice(), 0.0);
 
-        shoppingCart.removeProduct(firstProduct);
+        controller.removeProduct(cart, firstProduct);
 
-        assertEquals(0.0, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(0.0, cart.getTotalPrice(), 0.0);
 
     }
 
@@ -96,18 +99,18 @@ public class ShoppingCartTest {
         Product firstProduct = new Product("First Product", 2);
         Product secondProduct = new Product("Second Product", 10);
 
-        shoppingCart.addProduct(firstProduct);
-        shoppingCart.addProduct(secondProduct);
+        cart.addProduct(firstProduct);
+        cart.addProduct(secondProduct);
 
         // 0% discount?
-        shoppingCart.applyDiscountPercentage(0);
+        controller.applyDiscountPercentage(cart, 0);
 
-        assertEquals(12.0, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(12.0, cart.getTotalPrice(), 0.0);
 
         // 50% discount?
-        shoppingCart.applyDiscountPercentage(50);
+        controller.applyDiscountPercentage(cart, 50);
 
-        assertEquals(6.0, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(6.0, cart.getTotalPrice(), 0.0);
 
     }
 
@@ -115,7 +118,7 @@ public class ShoppingCartTest {
     public void testGetTotalPrice() {
         System.out.println("getTotalPrice");
 
-        assertEquals(0, shoppingCart.getTotalPrice(), 0.0);
+        assertEquals(0, cart.getTotalPrice(), 0.0);
 
     }
 
@@ -127,11 +130,11 @@ public class ShoppingCartTest {
         Product secondProduct = new Product("Second Product", 10);
         Product thirdProduct = new Product("Third product", 50);
 
-        shoppingCart.addProduct(thirdProduct);
-        shoppingCart.addProduct(secondProduct);
-        shoppingCart.addProduct(firstProduct);
+        controller.addProduct(cart, thirdProduct);
+        controller.addProduct(cart, secondProduct);
+        controller.addProduct(cart, firstProduct);
 
-        List<Product> actualProducts = shoppingCart.getProducts();
+        List<Product> actualProducts = cart.getProducts();
         assertEquals(3, actualProducts.size());
 
     }
