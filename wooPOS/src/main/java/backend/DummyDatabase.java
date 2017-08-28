@@ -21,7 +21,7 @@ public class DummyDatabase implements PosBackend {
         this.products = new ArrayList<>();
         
         // generate 20 random Products
-        for (int i = 1; i < 20; i++) {
+        for (int i = 0; i < 20; i++) {
             this.addProduct(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
         }
         
