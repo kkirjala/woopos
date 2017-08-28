@@ -7,7 +7,7 @@ package application;
 
 import interfaces.PaymentMethod;
 import interfaces.PosBackend;
-import interfaces.PosGUI;
+import interfaces.PosUI;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public class WooPOS {
     
      */
     private PosBackend backend;
-    private PosGUI ui;
+    private PosUI ui;
     private List<PaymentMethod> paymentMethods;
 
     public WooPOS() {
@@ -39,7 +39,7 @@ public class WooPOS {
         
     }
 
-    public WooPOS(PosBackend backend, PosGUI ui, List<PaymentMethod> paymentMethods) {
+    public WooPOS(PosBackend backend, PosUI ui, List<PaymentMethod> paymentMethods) {
 
         this.backend = backend;
         this.ui = ui;

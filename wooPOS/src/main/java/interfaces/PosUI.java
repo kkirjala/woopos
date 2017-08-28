@@ -4,7 +4,7 @@ package interfaces;
  *
  * @author kalle
  */
-public interface PosGUI {
+public interface PosUI {
     
     public void onPosStartup();
 
