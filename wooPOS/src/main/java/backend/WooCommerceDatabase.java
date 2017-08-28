@@ -10,7 +10,7 @@ import interfaces.PosBackend;
 import java.util.List;
 
 /**
- *
+ * This class uses WooCommerce WordPress plugin as the backend of WooPOS.
  * @author kkirjala
  */
 public class WooCommerceDatabase implements PosBackend {

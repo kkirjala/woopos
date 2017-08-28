@@ -8,7 +8,8 @@ import model.Product;
 import model.ShoppingCart;
 
 /**
- *
+ * A dummy Database for testing/development purposes. Randomized data.
+ * 
  * @author kalle
  */
 public class DummyDatabase implements PosBackend {

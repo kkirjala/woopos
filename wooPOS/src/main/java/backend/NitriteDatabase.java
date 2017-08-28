@@ -8,7 +8,7 @@ import java.util.List;
 import org.dizitart.no2.Nitrite;
 
 /**
- *
+ * A simple local NoSQL database for storing the information needed by WooPOS.
  * @author kkirjala
  */
 public class NitriteDatabase implements PosBackend {
