@@ -1,6 +1,6 @@
 package interfaces;
 
-import domain.Order;
+import model.Order;
 
 /**
  *

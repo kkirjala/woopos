@@ -5,6 +5,8 @@
  */
 package domain;
 
+import model.ShoppingCart;
+import model.Product;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;

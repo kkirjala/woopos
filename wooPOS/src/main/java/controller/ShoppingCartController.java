@@ -5,8 +5,8 @@
  */
 package controller;
 
-import domain.Product;
-import domain.ShoppingCart;
+import model.Product;
+import model.ShoppingCart;
 import interfaces.ShoppingCartListener;
 
 /**

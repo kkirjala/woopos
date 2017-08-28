@@ -3,9 +3,9 @@ package backend;
 import com.icoderman.woocommerce.WooCommerce;
 import com.icoderman.woocommerce.WooCommerceAPI;
 import com.icoderman.woocommerce.oauth.OAuthConfig;
-import domain.Order;
-import domain.Product;
-import domain.ShoppingCart;
+import model.Order;
+import model.Product;
+import model.ShoppingCart;
 import interfaces.PosBackend;
 import java.util.List;
 

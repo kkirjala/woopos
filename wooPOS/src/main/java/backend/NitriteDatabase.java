@@ -1,8 +1,8 @@
 package backend;
 
-import domain.Order;
-import domain.Product;
-import domain.ShoppingCart;
+import model.Order;
+import model.Product;
+import model.ShoppingCart;
 import interfaces.PosBackend;
 import java.util.List;
 import org.dizitart.no2.Nitrite;
