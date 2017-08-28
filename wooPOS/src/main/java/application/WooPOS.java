@@ -21,7 +21,7 @@ public class WooPOS {
      - init ui/gui
     
      */
-    private List<PosBackend> backends;
+    private PosBackend backend;
     private List<PaymentMethod> paymentMethods;
 
     public WooPOS() {
@@ -42,9 +42,7 @@ public class WooPOS {
 
     public void fireOnPosStartup() {
 
-        for (PosBackend currBackend : this.backends) {
-            currBackend.onPosStartup();
-        }
+        this.backend.onPosStartup();
 
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
             currPaymentMethod.onPosStartup();
@@ -54,9 +52,7 @@ public class WooPOS {
 
     public void fireOnPosClose() {
         
-        for (PosBackend currBackend : this.backends) {
-            currBackend.onPosClose();
-        }
+        this.backend.onPosClose();        
 
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
             currPaymentMethod.onPosClose();
