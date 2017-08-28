@@ -76,4 +76,16 @@ public class WooPOS {
 
     }
 
+    public PosBackend getBackend() {
+        return backend;
+    }
+
+    public List<PaymentMethod> getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public PosUI getUi() {
+        return ui;
+    }
+
 }
