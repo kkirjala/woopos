@@ -10,7 +10,7 @@ import model.ShoppingCart;
 import interfaces.ShoppingCartListener;
 
 /**
- *
+ * Controller facilities for interacting with a shopping cart.
  * @author kkirjala
  */
 public class ShoppingCartController {
