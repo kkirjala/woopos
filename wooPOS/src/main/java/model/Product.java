@@ -15,7 +15,7 @@ public class Product {
     private final String displayName;
     private final double price;
 
-    public Product(String displayName, int price) {
+    public Product(String displayName, double price) {
         this.displayName = displayName;
         this.price = price;
     }
