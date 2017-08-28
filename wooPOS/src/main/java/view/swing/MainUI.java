@@ -5,17 +5,19 @@
  */
 package view.swing;
 
+import interfaces.PosUI;
+
 /**
  *
  * @author kalle
  */
-public class MainUI extends javax.swing.JFrame {
+public class MainUI extends javax.swing.JFrame implements PosUI {
 
     /**
      * Creates new form MainUI
      */
     public MainUI() {
-        initComponents();
+        
     }
 
     /**
@@ -135,4 +137,14 @@ public class MainUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onPosStartup() {
+        initComponents();
+    }
+
+    @Override
+    public void onPosClose() {
+        
+    }
 }
