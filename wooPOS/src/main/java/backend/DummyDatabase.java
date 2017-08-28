@@ -1,6 +1,8 @@
 package backend;
 import interfaces.PosBackend;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import model.Order;
 import model.Product;
 import model.ShoppingCart;
@@ -11,39 +13,51 @@ import model.ShoppingCart;
  */
 public class DummyDatabase implements PosBackend {
 
+    private ArrayList<Product> products;
+    
     @Override
     public void onPosStartup() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        this.products = new ArrayList<>();
+        
+        // generate 20 random Products
+        for (int i = 1; i < 20; i++) {
+            this.products.add(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
+        }
+        
     }
 
     @Override
     public void onPosClose() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.products = null;
     }
 
     @Override
     public List<Product> getProducts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.products;
     }
 
     @Override
     public void addProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.products.add(product);
     }
 
     @Override
     public void deleteProduct(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.products.remove(product);
     }
 
     @Override
     public Order createOrder(ShoppingCart shoppingCart) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // TODO: unfinished
+        return new Order(this.products, new Random().nextDouble() * 100);
     }
 
     @Override
     public Order getOrder(Order order) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // TODO: unfinished
+        return new Order(this.products, new Random().nextDouble() * 100);
+        
     }
     
     
