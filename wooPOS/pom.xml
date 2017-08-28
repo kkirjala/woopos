@@ -47,11 +47,14 @@
                 <version>1.1.8</version>
                 <configuration>
                     <targetClasses>
-                        <param>domain.*</param>
+                        <param>application.*</param>
+                        <param>backend.*</param>
+                        <param>controller.*</param>                        
                         <param>interfaces.*</param>
+                        <param>model.*</param>
                     </targetClasses>
                     <targetTests>
-                        <param>domain.*</param>
+                        <param>controller.*</param>
                         <param>interfaces.*</param>
                     </targetTests>
                 </configuration>
