@@ -17,30 +17,46 @@ public class ShoppingCartController {
 
     public ShoppingCartController() {
     }
-    
-    
+
+    /**
+     * Initialize a new empty ShoppingCart
+     *
+     * @return a new ShoppingCart object
+     */
     public ShoppingCart createShoppingCart() {
         return new ShoppingCart();
     }
-    
-        
+
+    /**
+     * Add a Product to a ShoppingCart
+     *
+     * @param cart the ShoppingCart that will be updated
+     * @param product the Product to add
+     *
+     */
     public void addProduct(ShoppingCart cart, Product product) {
         cart.addProduct(product);
     }
 
+    /**
+     * Remove a Product from a ShoppingCart
+     *
+     * @param cart the ShoppingCart to be updated
+     * @param product the Product to be removed
+     *
+     */
     public void removeProduct(ShoppingCart cart, Product product) {
         cart.removeProduct(product);
     }
 
-    /* 
-        A method for adding a discount-% to the list of discounts
-        applied to the shopping cart 
+    /**
+     * Apply a percentage discount to the ShoppingCart
+     * Deducts a specified percent from the total value of the cart.
+     *
+     * @param discountPercentage integer value specifying the discount, 0-100.
      */
     public void applyDiscountPercentage(ShoppingCart cart, int discountPercentage) {
         cart.addDiscountPercentage(discountPercentage);
     }
 
-
-
-    
 }
