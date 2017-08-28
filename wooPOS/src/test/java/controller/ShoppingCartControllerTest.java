@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package domain;
+package controller;
 
 import controller.ShoppingCartController;
 import model.ShoppingCart;
 import model.Product;
 import java.util.List;
+import model.Product;
+import model.ShoppingCart;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
