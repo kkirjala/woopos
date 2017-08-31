@@ -1,5 +1,6 @@
 package interfaces;
 
+import application.WooPOS;
 import model.Order;
 import model.Product;
 import model.ShoppingCart;
@@ -14,12 +15,12 @@ public interface PosBackend {
     /**
      * Method that is called during POS startup.
      */
-    public void onPosStartup();
+    public void onPosStartup(WooPOS applicationContext);
 
     /**
      * Method that is called during POS close/shutdown.
      */
-    public void onPosClose();
+    public void onPosClose(WooPOS applicationContext);
 
     /**
      * Get a complete product list

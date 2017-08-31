@@ -54,25 +54,25 @@ public class WooPOS {
 
     public void fireOnPosStartup() {
 
-        this.backend.onPosStartup();
+        this.backend.onPosStartup(this);
 
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
-            currPaymentMethod.onPosStartup();
+            currPaymentMethod.onPosStartup(this);
         }
         
-        this.ui.onPosStartup();
+        this.ui.onPosStartup(this);
 
     }
 
     public void fireOnPosClose() {
 
-        this.backend.onPosClose();
+        this.backend.onPosClose(this);
 
         for (PaymentMethod currPaymentMethod : this.paymentMethods) {
-            currPaymentMethod.onPosClose();
+            currPaymentMethod.onPosClose(this);
         }
         
-        this.ui.onPosClose();
+        this.ui.onPosClose(this);
 
     }
 

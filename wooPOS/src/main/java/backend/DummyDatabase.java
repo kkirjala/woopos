@@ -1,4 +1,6 @@
 package backend;
+
+import application.WooPOS;
 import interfaces.PosBackend;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,25 +11,27 @@ import model.ShoppingCart;
 
 /**
  * A dummy Database for testing/development purposes. Randomized data.
- * 
+ *
  * @author kalle
  */
 public class DummyDatabase implements PosBackend {
 
     private ArrayList<Product> products;
-    
-    public void onPosStartup() {
-        
+
+    public DummyDatabase() {
         this.products = new ArrayList<>();
-        
+
         // generate 20 random Products
         for (int i = 0; i < 20; i++) {
             this.addProduct(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
         }
-        
     }
 
-    public void onPosClose() {
+    public void onPosStartup(WooPOS applicationContext) {
+
+    }
+
+    public void onPosClose(WooPOS applicationContext) {
         this.products = null;
     }
 
@@ -51,9 +55,7 @@ public class DummyDatabase implements PosBackend {
     public Order getOrder(Order order) {
         // TODO: unfinished
         return new Order(this.products, new Random().nextDouble() * 100);
-        
+
     }
-    
-    
-    
+
 }

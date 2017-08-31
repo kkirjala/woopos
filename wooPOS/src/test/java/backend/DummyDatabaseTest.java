@@ -5,6 +5,7 @@
  */
 package backend;
 
+import application.WooPOS;
 import controller.ShoppingCartController;
 import java.util.List;
 import model.Order;
@@ -39,12 +40,12 @@ public class DummyDatabaseTest {
     @Before
     public void setUp() {
         this.db = new DummyDatabase();
-        this.db.onPosStartup();
+        this.db.onPosStartup(new WooPOS());
     }
     
     @After
     public void tearDown() {
-        this.db.onPosClose();
+        this.db.onPosClose(new WooPOS());
     }
 
  

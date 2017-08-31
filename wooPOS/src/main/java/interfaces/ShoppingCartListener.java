@@ -5,6 +5,8 @@
  */
 package interfaces;
 
+import model.ShoppingCart;
+
 /**
  *
  * @author kkirjala
@@ -14,6 +16,6 @@ public interface ShoppingCartListener {
     /**
      * Method that is called everytime the ShoppingCart's contents change.
      */
-    public void onShoppingCartUpdated();
+    public void onShoppingCartUpdated(ShoppingCart shoppingCart);
 
 }

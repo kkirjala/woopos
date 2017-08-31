@@ -8,6 +8,7 @@ package application;
 import backend.DummyDatabase;
 import java.util.ArrayList;
 import view.swing.MainUI;
+import view.swing.MainUI;
 
 /**
  *

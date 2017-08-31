@@ -1,5 +1,6 @@
 package interfaces;
 
+import application.WooPOS;
 import model.Order;
 
 /**
@@ -11,12 +12,12 @@ public interface PaymentMethod {
     /**
      * Method will be called during POS startup.
      */
-    public void onPosStartup();
+    public void onPosStartup(WooPOS applicationContext);
 
     /**
      * Method will be called during POS close/shutdown.
      */
-    public void onPosClose();
+    public void onPosClose(WooPOS applicationContext);
 
     /**
      * Method will be called when creating a payment with the selected payment method

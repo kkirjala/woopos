@@ -1,5 +1,6 @@
 package backend;
 
+import application.WooPOS;
 import model.Order;
 import model.Product;
 import model.ShoppingCart;
@@ -15,14 +16,14 @@ public class NitriteDatabase implements PosBackend {
 
     private Nitrite db;
 
-    public void onPosStartup() {
+    public void onPosStartup(WooPOS applicationContext) {
         this.db = Nitrite.builder()
                 .compressed()
                 .filePath("woopos.db")
                 .openOrCreate("user", "password");
     }
 
-    public void onPosClose() {
+    public void onPosClose(WooPOS applicationContext) {
         this.db.close();
     }
 
