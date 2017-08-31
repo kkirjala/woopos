@@ -7,7 +7,6 @@ package controller;
 
 import model.Product;
 import model.ShoppingCart;
-import interfaces.ShoppingCartListener;
 
 /**
  * Controller facilities for interacting with a shopping cart.

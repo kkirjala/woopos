@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,19 +31,21 @@ import model.ShoppingCart;
 public class MainUI implements PosUI {
 
     private WooPOS app;
-    
+
     private JFrame mainFrame;
     private JLabel headerLabel;
     private JLabel statusLabel;
-    
-    
+
     private JPanel productButtonPanel;
     private JPanel shoppingCartPanel;
     private JTextArea shoppingCartTextArea;
-    
-    private ShoppingCart shoppingCart;
+
+    private List<ProductButton> productButtons;
 
     public MainUI() {
+
+        this.productButtons = new ArrayList<>();
+
         prepareGUI();
 
     }
@@ -66,49 +69,45 @@ public class MainUI implements PosUI {
 
         shoppingCartPanel = new JPanel();
         shoppingCartPanel.setLayout(new FlowLayout());
-        shoppingCartTextArea = new JTextArea();
-        shoppingCartTextArea.setText("initial text");
-        
-        
-        
+        shoppingCartTextArea = new JTextArea("initial text");
+        shoppingCartPanel.add(shoppingCartTextArea);
+
         mainFrame.add(headerLabel);
         mainFrame.add(productButtonPanel);
         mainFrame.add(shoppingCartPanel);
         mainFrame.add(statusLabel);
-        
+
     }
 
     private void showEventDemo() {
         headerLabel.setText("Control in action: Button");
 
         DummyDatabase db = new DummyDatabase();
-        ArrayList<ProductButton> prodButtons = new ArrayList<>();
-        
+
         for (Product currProduct : db.getProducts()) {
-            prodButtons.add(new ProductButton(currProduct));
-                    
-            ProductButton btn = prodButtons.get(prodButtons.size() - 1);
+            this.productButtons.add(new ProductButton(currProduct));
+
+            ProductButton btn = this.productButtons.get(this.productButtons.size() - 1);
 
             btn.setActionCommand(currProduct.getDisplayName());
-            btn.addActionListener(new ProductButtonClickListener());
+
+            btn.addActionListener(new MainUI.ProductButtonClickListener());
 
         }
-        
-        for (ProductButton currButton : prodButtons) {
+
+        for (ProductButton currButton : this.productButtons) {
             productButtonPanel.add(currButton);
         }
 
-        
         mainFrame.setVisible(true);
     }
 
     @Override
     public void onPosStartup(WooPOS applicationContext) {
-        
+
         MainUI swingControlDemo = new MainUI();
         swingControlDemo.showEventDemo();
-        
-        
+
     }
 
     @Override
@@ -132,7 +131,7 @@ public class MainUI implements PosUI {
         public void onShoppingCartUpdated(ShoppingCart cart) {
             shoppingCartTextArea.setText(cart.getProducts().toString());
         }
-        
+
     }
 
 }

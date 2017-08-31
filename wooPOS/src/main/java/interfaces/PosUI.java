@@ -1,6 +1,7 @@
 package interfaces;
 
 import application.WooPOS;
+import java.util.List;
 
 /**
  *
@@ -17,5 +18,5 @@ public interface PosUI {
      * Method that is called during POS close/shutdown.
      */
     public void onPosClose(WooPOS applicationContext);
-
+    
 }

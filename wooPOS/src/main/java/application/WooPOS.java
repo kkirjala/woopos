@@ -5,6 +5,8 @@
  */
 package application;
 
+import controller.OrderController;
+import controller.ShoppingCartController;
 import interfaces.PaymentMethod;
 import interfaces.PosBackend;
 import interfaces.PosUI;
@@ -25,6 +27,8 @@ public class WooPOS {
     private PosBackend backend;
     private PosUI ui;
     private List<PaymentMethod> paymentMethods;
+    private OrderController orderController;
+    private ShoppingCartController shoppingCartController;
 
     public WooPOS() {
 
@@ -44,6 +48,9 @@ public class WooPOS {
         this.backend = backend;
         this.ui = ui;
         this.paymentMethods = paymentMethods;
+        
+        this.orderController = new OrderController();
+        this.shoppingCartController = new ShoppingCartController();        
 
         fireOnPosStartup();
 
