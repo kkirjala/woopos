@@ -85,7 +85,7 @@ public class ShoppingCart {
 
     public void fireOnShoppingCartUpdated() {
         for (ShoppingCartListener currListener : this.listeners) {
-            currListener.onShoppingCartUpdated();
+            currListener.onShoppingCartUpdated(this);
         }
     }
 

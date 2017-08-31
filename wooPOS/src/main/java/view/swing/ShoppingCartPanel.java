@@ -7,6 +7,7 @@ package view.swing;
 
 import interfaces.ShoppingCartListener;
 import javax.swing.JPanel;
+import model.ShoppingCart;
 
 /**
  *
@@ -27,7 +28,7 @@ public class ShoppingCartPanel extends JPanel implements ShoppingCartListener {
     }
 
     @Override
-    public void onShoppingCartUpdated() {
+    public void onShoppingCartUpdated(ShoppingCart cart) {
         this.DisplayShoppingCartContents();
     }
     
