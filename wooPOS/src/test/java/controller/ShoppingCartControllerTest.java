@@ -6,7 +6,7 @@
 package controller;
 
 import application.WooPOS;
-import controller.ShoppingCartController;
+import controller.OrderController;
 import model.ShoppingCart;
 import model.Product;
 import java.util.List;
@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
  */
 public class ShoppingCartControllerTest {
 
-    private ShoppingCartController controller;
+    private OrderController controller;
     private ShoppingCart cart;
 
     public ShoppingCartControllerTest() {
@@ -42,7 +42,7 @@ public class ShoppingCartControllerTest {
     @Before
     public void setUp() {
 
-        this.controller = new ShoppingCartController(new WooPOS());
+        this.controller = new OrderController(new WooPOS());
         this.cart = controller.getShoppingCart();
 
     }

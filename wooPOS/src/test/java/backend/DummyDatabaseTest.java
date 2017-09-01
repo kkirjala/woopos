@@ -6,7 +6,7 @@
 package backend;
 
 import application.WooPOS;
-import controller.ShoppingCartController;
+import controller.OrderController;
 import java.util.List;
 import model.Order;
 import model.Product;
@@ -92,7 +92,7 @@ public class DummyDatabaseTest {
     public void testCreateOrder() {
         System.out.println("createOrder");
         
-        ShoppingCartController cartController = new ShoppingCartController(new WooPOS());
+        OrderController cartController = new OrderController(new WooPOS());
         ShoppingCart cart = cartController.getShoppingCart();
         
         cartController.addProduct(cart, new Product("Product 1", 15.0));
