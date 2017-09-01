@@ -106,7 +106,6 @@ public class MainUI implements PosUI {
 
             ProductButton btn = this.productButtons.get(this.productButtons.size() - 1);
 
-            btn.setActionCommand(currProduct.getDisplayName());
             btn.addActionListener(listener);
 
         }

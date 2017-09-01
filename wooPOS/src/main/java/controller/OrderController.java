@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.Product;
 import model.ShoppingCart;
-import view.swing.ProductButton;
+import view.swing.buttons.ProductButton;
 
 /**
  * Controller facilities for interacting with a shopping cart.
@@ -26,36 +26,35 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     private WooPOS app;
     private ShoppingCart shoppingCart;
 
-
-
     public OrderController(WooPOS app) {
 
         this.app = app;
         this.ui = app.getUi();
 
         this.createShoppingCart();
-        
+
     }
 
     /**
-     * Initialize a new empty ShoppingCart. Controller will listen to the changes
-     * and update the View accordingly.
+     * Initialize a new empty ShoppingCart. Controller will listen to the
+     * changes and update the View accordingly.
      *
      */
     private void createShoppingCart() {
-        this.shoppingCart = new ShoppingCart(); 
-        
+        this.shoppingCart = new ShoppingCart();
+
         this.shoppingCart.addShoppingCartListener(this);
     }
 
     /**
      * Get a reference to the currently active shopping cart
+     *
      * @return shoppingCart
      */
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
-    }    
-    
+    }
+
     /**
      * Add a Product to a ShoppingCart
      *
@@ -89,8 +88,8 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     }
 
     /**
-     * Forwards the list of products to View in order to render UI buttons
-     * for adding Products to Shopping Cart.
+     * Forwards the list of products to View in order to render UI buttons for
+     * adding Products to Shopping Cart.
      */
     private void generateUIProductButtons() {
 
@@ -104,33 +103,41 @@ public class OrderController implements ActionListener, PosController, ShoppingC
      * @param event
      */
     public void actionPerformed(ActionEvent event) {
-
-        ProductButton prodButton = (ProductButton) event.getSource();
-        Product prod = prodButton.getProduct();
         
-        this.addProduct(this.shoppingCart, prod);               
+        switch (event.getActionCommand()) {
+            case "add_product_to_cart":
 
+                ProductButton prodButton = (ProductButton) event.getSource();
+                Product prod = prodButton.getProduct();
+
+                this.addProduct(this.shoppingCart, prod);
+
+                break;
+            case "create_payment":
+                break;
+
+        }
     }
 
     @Override
     public void onPosStartup(WooPOS applicationContext) {
-       
+
         this.generateUIProductButtons();
     }
 
     @Override
     public void onPosClose(WooPOS applicationContext) {
-        
+
     }
 
     @Override
     public void onShoppingCartUpdated(ShoppingCart shoppingCart) {
-        
+
         // this.ui can be null in test scope
         if (this.ui != null) {
             this.ui.setShoppingCartContentDisplay(this.getShoppingCart());
         }
-        
+
     }
 
 }

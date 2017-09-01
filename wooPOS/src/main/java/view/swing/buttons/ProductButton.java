@@ -13,18 +13,20 @@ import model.Product;
  * @author kalle
  */
 public class ProductButton extends JButton {
-    
+
     private Product product;
 
     public ProductButton(Product product) {
+
         super(product.getDisplayName());
-        this.product = product;        
+
+        this.product = product;
+        this.setActionCommand("add_product_to_cart");
+
     }
 
     public Product getProduct() {
         return product;
     }
-    
-    
-    
+
 }
