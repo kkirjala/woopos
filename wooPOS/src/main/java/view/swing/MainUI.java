@@ -5,6 +5,9 @@
  */
 package view.swing;
 
+import view.swing.panels.ProductButtonPanel;
+import view.swing.panels.ShoppingCartPanel;
+import view.swing.buttons.ProductButton;
 import application.WooPOS;
 import interfaces.PosUI;
 import java.awt.Color;
@@ -35,8 +38,8 @@ public class MainUI implements PosUI {
     private JLabel headerLabel;
     private JLabel statusLabel;
 
-    private JPanel productButtonPanel;
-    private JPanel shoppingCartPanel;
+    private ProductButtonPanel productButtonPanel;
+    private ShoppingCartPanel shoppingCartPanel;
     private JTextArea shoppingCartTextArea;
 
     private List<ProductButton> productButtons;
@@ -63,10 +66,10 @@ public class MainUI implements PosUI {
         headerLabel = new JLabel("", JLabel.CENTER);
         headerLabel.setText("wooPOS");
 
-        productButtonPanel = new JPanel();
+        productButtonPanel = new ProductButtonPanel();
         productButtonPanel.setLayout(new GridLayout(10, 5));
 
-        shoppingCartPanel = new JPanel();
+        shoppingCartPanel = new ShoppingCartPanel();
         shoppingCartPanel.setLayout(new FlowLayout());
 
         shoppingCartTextArea = new JTextArea("shopping cart display");

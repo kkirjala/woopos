@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package view.swing;
+package view.swing.panels;
 
 import javax.swing.JPanel;
 
@@ -11,21 +6,12 @@ import javax.swing.JPanel;
  *
  * @author kkirjala
  */
-public class ProductPanel extends JPanel {
+public class ProductButtonPanel extends JPanel {
 
     
-    public ProductPanel() {
-        
+    public ProductButtonPanel() {
         
         super();
     }
-    
-    // TODO: 
-    // - konteksti -> backend -> getProducts() -> luo napit
-    private void GenerateProductButtons() {
-        
-    }
-    
-    
     
 }
