@@ -5,6 +5,7 @@
  */
 package controller;
 
+import application.WooPOS;
 import controller.ShoppingCartController;
 import model.ShoppingCart;
 import model.Product;
@@ -41,8 +42,8 @@ public class ShoppingCartControllerTest {
     @Before
     public void setUp() {
 
-        this.controller = new ShoppingCartController();
-        this.cart = controller.createShoppingCart();
+        this.controller = new ShoppingCartController(new WooPOS());
+        this.cart = controller.getShoppingCart();
 
     }
 

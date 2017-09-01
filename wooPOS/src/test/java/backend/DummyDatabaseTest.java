@@ -92,8 +92,8 @@ public class DummyDatabaseTest {
     public void testCreateOrder() {
         System.out.println("createOrder");
         
-        ShoppingCartController cartController = new ShoppingCartController();
-        ShoppingCart cart = cartController.createShoppingCart();
+        ShoppingCartController cartController = new ShoppingCartController(new WooPOS());
+        ShoppingCart cart = cartController.getShoppingCart();
         
         cartController.addProduct(cart, new Product("Product 1", 15.0));
         
