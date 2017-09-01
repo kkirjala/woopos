@@ -50,7 +50,7 @@ public class WooPOS {
         this.paymentMethods = paymentMethods;
         
         this.orderController = new OrderController();
-        this.shoppingCartController = new ShoppingCartController();        
+        this.shoppingCartController = new ShoppingCartController(this);        
 
         fireOnPosStartup();
 
@@ -68,6 +68,8 @@ public class WooPOS {
         }
         
         this.ui.onPosStartup(this);
+        
+        this.shoppingCartController.onPosStartup(this);
 
     }
 
@@ -80,6 +82,8 @@ public class WooPOS {
         }
         
         this.ui.onPosClose(this);
+        
+        this.shoppingCartController.onPosClose(this);
 
     }
 

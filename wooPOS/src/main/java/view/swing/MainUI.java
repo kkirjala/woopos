@@ -9,12 +9,14 @@ import application.WooPOS;
 import backend.DummyDatabase;
 import interfaces.PosUI;
 import interfaces.ShoppingCartListener;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
@@ -51,6 +53,7 @@ public class MainUI implements PosUI {
     }
 
     private void prepareGUI() {
+        
         mainFrame = new JFrame("wooPOS");
         mainFrame.setSize(1024, 768);
         mainFrame.setLayout(new GridLayout(3, 1));
@@ -67,9 +70,15 @@ public class MainUI implements PosUI {
         productButtonPanel = new JPanel();
         productButtonPanel.setLayout(new GridLayout(10, 5));
 
+        
+        
         shoppingCartPanel = new JPanel();
         shoppingCartPanel.setLayout(new FlowLayout());
-        shoppingCartTextArea = new JTextArea("initial text");
+        
+        shoppingCartTextArea = new JTextArea("shopping cart display");
+        shoppingCartTextArea.setSize(300, 600);
+        shoppingCartTextArea.setBackground(Color.WHITE);
+        
         shoppingCartPanel.add(shoppingCartTextArea);
 
         mainFrame.add(headerLabel);
@@ -80,28 +89,11 @@ public class MainUI implements PosUI {
     }
 
     private void showEventDemo() {
-        headerLabel.setText("Control in action: Button");
+        headerLabel.setText("wooPOS");
 
-        DummyDatabase db = new DummyDatabase();
-
-        for (Product currProduct : db.getProducts()) {
-            this.productButtons.add(new ProductButton(currProduct));
-
-            ProductButton btn = this.productButtons.get(this.productButtons.size() - 1);
-
-            btn.setActionCommand(currProduct.getDisplayName());
-
-            btn.addActionListener(new MainUI.ProductButtonClickListener());
-
-        }
-
-        for (ProductButton currButton : this.productButtons) {
-            productButtonPanel.add(currButton);
-        }
-
-        mainFrame.setVisible(true);
+        
     }
-
+    
     @Override
     public void onPosStartup(WooPOS applicationContext) {
 
@@ -115,23 +107,41 @@ public class MainUI implements PosUI {
 
     }
 
-    private class ProductButtonClickListener implements ActionListener {
+    @Override
+    public void generateProductButtons(List<Product> products, ActionListener listener) {
+        
+        for (Product currProduct : products) {
+            this.productButtons.add(new ProductButton(currProduct));
 
-        public void actionPerformed(ActionEvent e) {
+            ProductButton btn = this.productButtons.get(this.productButtons.size() - 1);
 
-            ProductButton prodButton = (ProductButton) e.getSource();
-            Product prod = prodButton.getProduct();
+            btn.setActionCommand(currProduct.getDisplayName());
+            btn.addActionListener(listener);
 
-            statusLabel.setText(prod.getDisplayName() + " clicked!");
         }
+
+        for (ProductButton currButton : this.productButtons) {
+            productButtonPanel.add(currButton);
+        }
+        
+        mainFrame.setVisible(true);
+        
     }
 
-    private class ShoppingCartRefresher implements ShoppingCartListener {
 
-        public void onShoppingCartUpdated(ShoppingCart cart) {
-            shoppingCartTextArea.setText(cart.getProducts().toString());
+    @Override
+    public void setShoppingCartContentDisplay(ShoppingCart cart) {
+        
+        String cartContents = "";
+        
+        for (Product currProduct : cart.getProducts()) {
+            cartContents += currProduct.getDisplayName() + " (" + new DecimalFormat("#.##").format(currProduct.getPrice()) + ")" + "\n";
         }
 
+        cartContents += "\n---\n" + new DecimalFormat("#.##").format(cart.getTotalPrice());
+        
+        
+        this.shoppingCartTextArea.setText(cartContents);
     }
 
 }
