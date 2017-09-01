@@ -115,6 +115,8 @@ public class OrderController implements ActionListener, PosController, ShoppingC
                 break;
             case "create_payment":
                 break;
+            default:
+                break;
 
         }
     }
