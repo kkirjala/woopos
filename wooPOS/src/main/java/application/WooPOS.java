@@ -6,7 +6,6 @@
 package application;
 
 import controller.OrderController;
-import controller.OrderController;
 import interfaces.PaymentMethod;
 import interfaces.PosBackend;
 import interfaces.PosUI;
@@ -27,8 +26,8 @@ public class WooPOS {
     private PosBackend backend;
     private PosUI ui;
     private List<PaymentMethod> paymentMethods;
+    
     private OrderController orderController;
-    private OrderController shoppingCartController;
 
     public WooPOS() {
 
@@ -49,8 +48,8 @@ public class WooPOS {
         this.ui = ui;
         this.paymentMethods = paymentMethods;
         
-        this.orderController = new OrderController();
-        this.shoppingCartController = new OrderController(this);        
+        
+        this.orderController = new OrderController(this);        
 
         fireOnPosStartup();
 
@@ -69,7 +68,7 @@ public class WooPOS {
         
         this.ui.onPosStartup(this);
         
-        this.shoppingCartController.onPosStartup(this);
+        this.orderController.onPosStartup(this);
 
     }
 
@@ -83,7 +82,7 @@ public class WooPOS {
         
         this.ui.onPosClose(this);
         
-        this.shoppingCartController.onPosClose(this);
+        this.orderController.onPosClose(this);
 
     }
 

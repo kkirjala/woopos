@@ -6,7 +6,6 @@
 package controller;
 
 import application.WooPOS;
-import backend.DummyDatabase;
 import interfaces.PosController;
 import interfaces.PosUI;
 import interfaces.ShoppingCartListener;
@@ -27,9 +26,7 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     private WooPOS app;
     private ShoppingCart shoppingCart;
 
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
-    }
+
 
     public OrderController(WooPOS app) {
 
@@ -41,15 +38,20 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     }
 
     /**
-     * Initialize a new empty ShoppingCart
+     * Initialize a new empty ShoppingCart. Controller will listen to the changes
+     * and update the View accordingly.
      *
      */
-    public void createShoppingCart() {
+    private void createShoppingCart() {
         this.shoppingCart = new ShoppingCart(); 
         
         this.shoppingCart.addShoppingCartListener(this);
     }
 
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }    
+    
     /**
      * Add a Product to a ShoppingCart
      *
@@ -82,12 +84,10 @@ public class OrderController implements ActionListener, PosController, ShoppingC
         cart.addDiscountPercentage(discountPercentage);
     }
 
+    
     private void generateUIProductButtons() {
-        
-        // TODO: remove this one, Dummy used for dev purposes
-        DummyDatabase db = new DummyDatabase();
 
-        this.ui.generateProductButtons(db.getProducts(), this);
+        this.ui.generateProductButtons(app.getBackend().getProducts(), this);
 
     }
 
@@ -109,10 +109,7 @@ public class OrderController implements ActionListener, PosController, ShoppingC
 
     @Override
     public void onPosStartup(WooPOS applicationContext) {
-        // TODO:
-        // metodi, joka syöttää tuotteet view:lle ja rekisteröi controllerin
-        // eventtikuuntelijaksi näppäinpainalluksille.
-        
+       
         this.generateUIProductButtons();
     }
 
@@ -124,6 +121,7 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     @Override
     public void onShoppingCartUpdated(ShoppingCart shoppingCart) {
         
+        // this.ui can be null in test scope
         if (this.ui != null) {
             this.ui.setShoppingCartContentDisplay(this.getShoppingCart());
         }
