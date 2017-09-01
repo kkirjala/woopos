@@ -27,5 +27,12 @@ public interface PaymentMethod {
      * @return whether the payment was successful or not (boolean)
      */
     public boolean createPayment(Order order);
+    
+    /**
+     * Display name of the payment method (eg. Cash, Credit Card, Invoice)
+     * @return Name of the payment method to be displayed in the UI
+     */
+    public String getDisplayName();
+    
 
 }
