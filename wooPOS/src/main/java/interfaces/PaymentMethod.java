@@ -2,6 +2,7 @@ package interfaces;
 
 import application.WooPOS;
 import model.Order;
+import model.Payment;
 
 /**
  *
@@ -20,13 +21,14 @@ public interface PaymentMethod {
     public void onPosClose(WooPOS applicationContext);
 
     /**
-     * Method will be called when creating a payment with the selected payment method
+     * Method will be called when creating a (partial) payment with the 
+     * selected payment method
      *
      * @param order the order to be paid
      *
-     * @return whether the payment was successful or not (boolean)
+     * @return a Payment if successful, or null if not successful
      */
-    public boolean createPayment(Order order);
+    public Payment createPayment(Order order);
     
     /**
      * Display name of the payment method (eg. Cash, Credit Card, Invoice)

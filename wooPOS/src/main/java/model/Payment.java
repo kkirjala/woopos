@@ -11,12 +11,10 @@ package model;
  */
 public class Payment {
     
-    private Order order;
     private double amount;
     private String description;
 
-    public Payment(Order order, double amount, String description) {
-        this.order = order;
+    public Payment(double amount, String description) {
         this.amount = amount;
         this.description = description;
     }
