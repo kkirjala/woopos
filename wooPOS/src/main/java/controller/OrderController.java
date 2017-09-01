@@ -114,6 +114,9 @@ public class OrderController implements ActionListener, PosController, ShoppingC
 
                 break;
             case "create_payment":
+                // TODO: check the amount to be debited and pass it on to the
+                // appropriate payment method as indicated by the button pressed
+                
                 break;
             default:
                 break;
