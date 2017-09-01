@@ -48,6 +48,10 @@ public class OrderController implements ActionListener, PosController, ShoppingC
         this.shoppingCart.addShoppingCartListener(this);
     }
 
+    /**
+     * Get a reference to the currently active shopping cart
+     * @return shoppingCart
+     */
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }    
@@ -84,7 +88,10 @@ public class OrderController implements ActionListener, PosController, ShoppingC
         cart.addDiscountPercentage(discountPercentage);
     }
 
-    
+    /**
+     * Forwards the list of products to View in order to render UI buttons
+     * for adding Products to Shopping Cart.
+     */
     private void generateUIProductButtons() {
 
         this.ui.generateProductButtons(app.getBackend().getProducts(), this);
@@ -94,14 +101,12 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     /**
      * event listener for UI product button clicks.
      *
-     * @param e
+     * @param event
      */
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent event) {
 
-        ProductButton prodButton = (ProductButton) e.getSource();
+        ProductButton prodButton = (ProductButton) event.getSource();
         Product prod = prodButton.getProduct();
-
-        // TODO: lisää shoppingCartiin prod
         
         this.addProduct(this.shoppingCart, prod);               
 
