@@ -28,5 +28,10 @@ public class Order {
     public void addPayment(Payment payment) {
         this.payments.add(payment);
     }
+
+    public double getOrderTotal() {
+        return orderTotal;
+    }
+    
     
 }
