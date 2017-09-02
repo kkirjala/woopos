@@ -9,6 +9,7 @@ import view.swing.panels.ProductButtonPanel;
 import view.swing.panels.ShoppingCartPanel;
 import view.swing.buttons.ProductButton;
 import application.WooPOS;
+import interfaces.PaymentMethod;
 import interfaces.PosUI;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -25,6 +26,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import model.Product;
 import model.ShoppingCart;
+import view.swing.buttons.PaymentButton;
+import view.swing.panels.PaymentButtonPanel;
 
 /**
  *
@@ -39,14 +42,17 @@ public class MainUI implements PosUI {
     private JLabel statusLabel;
 
     private ProductButtonPanel productButtonPanel;
+    private PaymentButtonPanel paymentButtonPanel;
     private ShoppingCartPanel shoppingCartPanel;
     private JTextArea shoppingCartTextArea;
 
     private List<ProductButton> productButtons;
+    private List<PaymentButton> paymentButtons;
 
     public MainUI() {
 
         this.productButtons = new ArrayList<>();
+        this.paymentButtons = new ArrayList<>();
 
     }
 
@@ -63,11 +69,11 @@ public class MainUI implements PosUI {
             }
         });
 
-        headerLabel = new JLabel("", JLabel.CENTER);
-        headerLabel.setText("wooPOS");
-
         productButtonPanel = new ProductButtonPanel();
         productButtonPanel.setLayout(new GridLayout(10, 5));
+
+        paymentButtonPanel = new PaymentButtonPanel();
+        paymentButtonPanel.setLayout(new GridLayout(4, 2));
 
         shoppingCartPanel = new ShoppingCartPanel();
         shoppingCartPanel.setLayout(new FlowLayout());
@@ -78,10 +84,10 @@ public class MainUI implements PosUI {
 
         shoppingCartPanel.add(shoppingCartTextArea);
 
-        mainFrame.add(headerLabel);
         mainFrame.add(productButtonPanel);
+        mainFrame.add(paymentButtonPanel);
         mainFrame.add(shoppingCartPanel);
-        
+
         mainFrame.setVisible(true);
 
     }
@@ -128,6 +134,22 @@ public class MainUI implements PosUI {
         cartContents += "\n---\n" + new DecimalFormat("#.##").format(cart.getTotalPrice());
 
         this.shoppingCartTextArea.setText(cartContents);
+    }
+
+    @Override
+    public void generatePaymentButtons(List<PaymentMethod> paymentMethods, ActionListener listener) {
+        for (PaymentMethod currMethod : paymentMethods) {
+            this.paymentButtons.add(new PaymentButton(currMethod));
+
+            PaymentButton btn = this.paymentButtons.get(this.paymentButtons.size() - 1);
+
+            btn.addActionListener(listener);
+
+        }
+
+        for (PaymentButton currButton : this.paymentButtons) {
+            paymentButtonPanel.add(currButton);
+        }
     }
 
 }
