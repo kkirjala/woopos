@@ -81,6 +81,7 @@ public class ShoppingCart {
 
     public void addShoppingCartListener(ShoppingCartListener listener) {
         this.listeners.add(listener);
+        this.fireOnShoppingCartUpdated();
     }
 
     public void fireOnShoppingCartUpdated() {
