@@ -16,7 +16,7 @@ import model.ShoppingCart;
  */
 public class DummyDatabase implements PosBackend {
 
-    private ArrayList<Product> products;
+    private List<Product> products;
 
     public DummyDatabase() {
         this.products = new ArrayList<>();
@@ -25,6 +25,7 @@ public class DummyDatabase implements PosBackend {
         for (int i = 0; i < 20; i++) {
             this.addProduct(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
         }
+
     }
 
     public void onPosStartup(WooPOS applicationContext) {
@@ -32,7 +33,7 @@ public class DummyDatabase implements PosBackend {
     }
 
     public void onPosClose(WooPOS applicationContext) {
-        this.products = null;
+        
     }
 
     public List<Product> getProducts() {
