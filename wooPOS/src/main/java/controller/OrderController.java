@@ -170,16 +170,12 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     @Override
     public void onShoppingCartUpdated(ShoppingCart shoppingCart) {
 
-        // this.ui can be null in test scope
-        if (this.ui != null) {
-            this.ui.setShoppingCartContentDisplay(this.getShoppingCart());
-        }
+        this.ui.setShoppingCartContentDisplay(this.getShoppingCart());
 
     }
 
     @Override
     public void onOrderUpdated(Order order) {
-        // TODO: jos tilaus kokonaan maksettu, niin uusi shoppingcart kehiin
         
         switch (order.getOrderStatus()) {
             case PAID: // order finished, new cart
