@@ -18,5 +18,13 @@ public class Payment {
         this.amount = amount;
         this.description = description;
     }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
     
 }

@@ -6,6 +6,7 @@
 package controller;
 
 import application.WooPOS;
+import interfaces.OrderListener;
 import interfaces.PaymentMethod;
 import interfaces.PosController;
 import interfaces.PosUI;
@@ -24,7 +25,7 @@ import view.swing.buttons.ProductButton;
  *
  * @author kkirjala
  */
-public class OrderController implements PosController, ShoppingCartListener, ActionListener {
+public class OrderController implements PosController, ShoppingCartListener, OrderListener, ActionListener {
 
     private PosUI ui;
     private WooPOS app;
@@ -85,6 +86,7 @@ public class OrderController implements PosController, ShoppingCartListener, Act
      * Apply a percentage discount to the ShoppingCart Deducts a specified
      * percent from the total value of the cart.
      *
+     * @param cart shopping cart
      * @param discountPercentage integer value specifying the discount, 0-100.
      */
     public void applyDiscountPercentage(ShoppingCart cart, int discountPercentage) {
@@ -98,9 +100,12 @@ public class OrderController implements PosController, ShoppingCartListener, Act
      */
     public Order createOrder(ShoppingCart cart) {
         
-        return new Order(cart.getProducts(), cart.getTotalPrice());
+        Order newOrder = new Order(cart.getProducts(), cart.getTotalPrice());
+        newOrder.addOrderListener(this);
         
         // TODO: testaa tyhjällä korilla
+        
+        return newOrder;
         
     }
     
@@ -111,7 +116,7 @@ public class OrderController implements PosController, ShoppingCartListener, Act
         if (payment != null) {
             order.addPayment(payment);
         }
-        
+
         // TODO: testaa nollasummalla
         
     }
@@ -171,6 +176,20 @@ public class OrderController implements PosController, ShoppingCartListener, Act
             this.ui.setShoppingCartContentDisplay(this.getShoppingCart());
         }
 
+    }
+
+    @Override
+    public void onOrderUpdated(Order order) {
+        // TODO: jos tilaus kokonaan maksettu, niin uusi shoppingcart kehiin
+        
+        switch (order.getOrderStatus()) {
+            case PAID: // order finished, new cart
+                this.createShoppingCart();
+                break;
+            default:
+                break;                
+        }
+        
     }
 
 }
