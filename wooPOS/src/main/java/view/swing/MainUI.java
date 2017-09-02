@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.swing;
 
 import view.swing.panels.ProductButtonPanel;
@@ -30,7 +25,7 @@ import view.swing.buttons.PaymentButton;
 import view.swing.panels.PaymentButtonPanel;
 
 /**
- *
+ * A graphical user interface (GUI) for WooPOS. Made using Java/Swing API.
  * @author kalle
  */
 public class MainUI implements PosUI {
@@ -49,6 +44,9 @@ public class MainUI implements PosUI {
     private List<ProductButton> productButtons;
     private List<PaymentButton> paymentButtons;
 
+    /**
+     * Create a new GUI instance.
+     */
     public MainUI() {
 
         this.productButtons = new ArrayList<>();
@@ -56,6 +54,10 @@ public class MainUI implements PosUI {
 
     }
 
+    /**
+     * Do the actual work of creating the individual UI components and placing
+     * them in the layout.
+     */
     private void initGUI() {
 
         mainFrame = new JFrame("wooPOS");

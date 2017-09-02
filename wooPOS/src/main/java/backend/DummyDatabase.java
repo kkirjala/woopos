@@ -18,41 +18,64 @@ public class DummyDatabase implements PosBackend {
 
     private List<Product> products;
 
+    /**
+     * Constructor will generate 20 randomized products.
+     */
     public DummyDatabase() {
         this.products = new ArrayList<>();
 
-        // generate 20 random Products
         for (int i = 0; i < 20; i++) {
             this.addProduct(new Product("Product " + String.valueOf(i), new Random().nextDouble() * 100));
         }
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void onPosStartup(WooPOS applicationContext) {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void onPosClose(WooPOS applicationContext) {
-        
+
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public List<Product> getProducts() {
         return this.products;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void addProduct(Product product) {
         this.products.add(product);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void deleteProduct(Product product) {
         this.products.remove(product);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Order createOrder(ShoppingCart shoppingCart) {
         // TODO: unfinished
         return new Order(this.products, new Random().nextDouble() * 100);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public Order getOrder(Order order) {
         // TODO: unfinished
         return new Order(this.products, new Random().nextDouble() * 100);

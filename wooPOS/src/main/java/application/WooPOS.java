@@ -12,7 +12,8 @@ import interfaces.PosUI;
 import java.util.List;
 
 /**
- *
+ * Main Application class that will take care of instantiation of the
+ * needed objects and fire it all up.
  * @author kkirjala
  */
 public class WooPOS {
@@ -29,6 +30,9 @@ public class WooPOS {
     
     private OrderController orderController;
 
+    /**
+     * Empty constructor.
+     */
     public WooPOS() {
 
         /* TODO:
@@ -42,6 +46,12 @@ public class WooPOS {
         
     }
 
+    /**
+     * Fire up the application.
+     * @param backend the backend database to be used for storing information.
+     * @param ui User interface class
+     * @param paymentMethods the allowed/used payment methods.
+     */
     public WooPOS(PosBackend backend, PosUI ui, List<PaymentMethod> paymentMethods) {
 
         this.backend = backend;
@@ -58,6 +68,9 @@ public class WooPOS {
 
     }
 
+    /**
+     * Firing of the application start event.
+     */
     public void fireOnPosStartup() {
 
         this.backend.onPosStartup(this);
@@ -72,6 +85,9 @@ public class WooPOS {
 
     }
 
+    /**
+     * Fire the application close event.
+     */
     public void fireOnPosClose() {
 
         this.backend.onPosClose(this);
@@ -86,18 +102,35 @@ public class WooPOS {
 
     }
 
+    /**
+     * Returns a reference to the used database backend.
+     * @return backend
+     */
     public PosBackend getBackend() {
         return backend;
     }
 
+    /**
+     * Returns the payment methods used at the runtime.
+     * @return a list of PaymentMethod objects
+     */
     public List<PaymentMethod> getPaymentMethods() {
         return paymentMethods;
     }
 
+    /**
+     * Returns a reference to the used User Interface.
+     * @return PosUI
+     */
     public PosUI getUi() {
         return ui;
     }
 
+    /**
+     * Returns a reference to the controller object for manipulating shopping
+     * cart, products and orders.
+     * @return OrderController
+     */
     public OrderController getOrderController() {
         return orderController;
     }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import application.WooPOS;
@@ -21,7 +16,7 @@ import view.swing.buttons.PaymentButton;
 import view.swing.buttons.ProductButton;
 
 /**
- * Controller facilities for interacting with a shopping cart.
+ * Main Controller.
  *
  * @author kkirjala
  */
@@ -31,17 +26,20 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     private WooPOS app;
     private ShoppingCart shoppingCart;
 
+    /**
+     * Inits a new OrderController for manipulating shopping cart, products etc.
+     *
+     * @param app a WooPOS application instance.
+     */
     public OrderController(WooPOS app) {
 
         this.app = app;
-        this.ui = app.getUi();        
+        this.ui = app.getUi();
 
     }
 
     /**
-     * Initialize a new empty ShoppingCart. Controller will listen to the
-     * changes and update the View accordingly.
-     *
+     * Initialize a new empty ShoppingCart.
      */
     private void createShoppingCart() {
         this.shoppingCart = new ShoppingCart();
@@ -50,7 +48,7 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     }
 
     /**
-     * Get a reference to the currently active shopping cart
+     * Get a reference to the currently active shopping cart.
      *
      * @return shoppingCart
      */
@@ -59,7 +57,7 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     }
 
     /**
-     * Add a Product to a ShoppingCart
+     * Add a Product to a ShoppingCart.
      *
      * @param cart the ShoppingCart that will be updated
      * @param product the Product to add
@@ -70,7 +68,7 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     }
 
     /**
-     * Remove a Product from a ShoppingCart
+     * Remove a Product from a ShoppingCart.
      *
      * @param cart the ShoppingCart to be updated
      * @param product the Product to be removed
@@ -90,43 +88,46 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     public void applyDiscountPercentage(ShoppingCart cart, int discountPercentage) {
         cart.addDiscountPercentage(discountPercentage);
     }
-    
+
     /**
-     * Creates a new Order from shoppingcart contents
+     * Creates a new Order from shoppingcart contents.
+     *
      * @param cart the cart to be turned into an order
-     * @return order 
+     * @return order
      */
     public Order createOrder(ShoppingCart cart) {
-        
+
         Order newOrder = new Order(cart.getProducts(), cart.getTotalPrice());
         newOrder.addOrderListener(this);
-        
+
         // TODO: testaa tyhjällä korilla
-        
         return newOrder;
-        
+
     }
-    
+
+    /**
+     * Create a payment for an Order using a specified PaymentMethod.
+     *
+     * @param order Order to be paid
+     * @param paymentMethod PaymentMethod to use for payment.
+     */
     public void createPayment(Order order, PaymentMethod paymentMethod) {
-        
+        // TODO: testaa nollasummalla
         Payment payment = paymentMethod.createPayment(order);
-        
+
         if (payment != null) {
             order.addPayment(payment);
         }
 
-        // TODO: testaa nollasummalla
-        
     }
 
-
     /**
-     * event listener for UI product button clicks.
+     * Event listener for UI button clicks.
      *
-     * @param event
+     * @param event triggered by UI component
      */
     public void actionPerformed(ActionEvent event) {
-        
+
         switch (event.getActionCommand()) {
             case "add_product_to_cart":
 
@@ -138,10 +139,10 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
                 break;
             case "create_payment":
                 PaymentButton pmtButton = (PaymentButton) event.getSource();
-                PaymentMethod pmtMethod =  pmtButton.getPaymentMethod();
-                
+                PaymentMethod pmtMethod = pmtButton.getPaymentMethod();
+
                 this.createPayment(this.createOrder(this.shoppingCart), pmtMethod);
-                
+
                 break;
             default:
                 break;
@@ -149,23 +150,28 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onPosStartup(WooPOS applicationContext) {
 
         this.ui.generateProductButtons(app.getBackend().getProducts(), this);
         this.ui.generatePaymentButtons(app.getPaymentMethods(), this);
-        
+
         this.createShoppingCart();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onPosClose(WooPOS applicationContext) {
 
     }
 
     /**
-     * Event listener is triggered when shopping cart's contents get updated.
-     * @param shoppingCart 
+     * {@inheritDoc}
      */
     @Override
     public void onShoppingCartUpdated(ShoppingCart shoppingCart) {
@@ -174,17 +180,20 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onOrderUpdated(Order order) {
-        
+
         switch (order.getOrderStatus()) {
             case PAID: // order finished, new cart
                 this.createShoppingCart();
                 break;
             default:
-                break;                
+                break;
         }
-        
+
     }
 
 }

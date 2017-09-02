@@ -6,7 +6,7 @@ import model.Order;
 import model.Payment;
 
 /**
- *
+ * A simple payment method for registering cash payments.
  * @author kkirjala
  */
 public class Cash implements PaymentMethod {
@@ -28,7 +28,5 @@ public class Cash implements PaymentMethod {
     public String getDisplayName() {
         return "Cash";
     }
-    
-    
     
 }

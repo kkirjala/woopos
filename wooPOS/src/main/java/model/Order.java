@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Model for Orders that are made from ShoppingCarts.
  * @author kkirjala
  */
 public class Order {
@@ -16,6 +16,11 @@ public class Order {
     private List<Payment> payments;
     private List<OrderListener> listeners;
 
+    /**
+     * Create a new order from a ShoppingCart contents.
+     * @param products a List of Products.
+     * @param orderTotal the grand total (including discounts)
+     */
     public Order(List<Product> products, double orderTotal) {
         this.products = products;
         this.orderStatus = OrderStatus.NEW;
@@ -24,22 +29,37 @@ public class Order {
         this.listeners = new ArrayList<>();
     }
 
+    /**
+     * Return Order's status.
+     * @return orderStatus the status (OrderStatus enum)
+     */
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    
+    /**
+     * Modify Order's status.
+     * @param orderStatus the status (OrderStatus enum)
+     */
     public void setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
                 
         this.fireOnOrderUpdated();
     }
 
+    /**
+     * Add a full or partial Payment to the Order.
+     * @param payment the Payment to add.
+     */
     public void addPayment(Payment payment) {
         this.payments.add(payment);
         this.checkOrderPayments();
     }
 
+    /**
+     * Return the grand total of Order.
+     * @return orderTotal grand total (double)
+     */
     public double getOrderTotal() {
         return orderTotal;
     }
@@ -64,10 +84,17 @@ public class Order {
         
     }
     
+    /**
+     * Register an event listener to monitor Order's changes.
+     * @param listener the OrderListener to register
+     */
     public void addOrderListener(OrderListener listener) {
         this.listeners.add(listener);
     }
     
+    /**
+     * Fire an event every time the Order changes.
+     */
     public void fireOnOrderUpdated() {
         for (OrderListener currListener : this.listeners) {
             currListener.onOrderUpdated(this);

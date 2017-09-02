@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package interfaces;
 
 import model.ShoppingCart;
 
 /**
- *
+ * Interface specification for listening to changes in a ShoppingCart.
  * @author kkirjala
  */
 public interface ShoppingCartListener {
 
     /**
      * Method that is called everytime the ShoppingCart's contents change.
+     * @param shoppingCart that has been updated.
      */
     public void onShoppingCartUpdated(ShoppingCart shoppingCart);
 

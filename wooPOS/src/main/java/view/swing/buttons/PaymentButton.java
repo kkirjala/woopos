@@ -1,21 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.swing.buttons;
 
 import interfaces.PaymentMethod;
 import javax.swing.JButton;
 
 /**
- *
+ * A custom button class for creating buttons that trigger making Payments
+ * for Orders.
  * @author kkirjala
  */
 public class PaymentButton extends JButton {
 
     private PaymentMethod paymentMethod;
 
+    /**
+     * Create a new button.
+     * @param paymentMethod the PaymentMethod that will be triggered by this
+     * button.
+     */
     public PaymentButton(PaymentMethod paymentMethod) {
 
         super(paymentMethod.getDisplayName());
@@ -25,6 +26,10 @@ public class PaymentButton extends JButton {
 
     }
 
+    /**
+     * The PaymentMethod associated with this button.
+     * @return the PaymentMethod.
+     */
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }

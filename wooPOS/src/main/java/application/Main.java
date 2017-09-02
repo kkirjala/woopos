@@ -12,13 +12,16 @@ import paymentmethods.Cash;
 import view.swing.MainUI;
 
 /**
- *
+ * Main class for the app.
  * @author kkirjala
  */
 public class Main {
 
+    /**
+     * Application entrypoint.
+     * @param args 
+     */
     public static void main(String[] args) {
-        // application entrypoint
 
         ArrayList<PaymentMethod> methods = new ArrayList<>();
         methods.add(new Cash());
