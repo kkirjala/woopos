@@ -20,7 +20,7 @@ import view.swing.buttons.ProductButton;
  *
  * @author kkirjala
  */
-public class OrderController implements ActionListener, PosController, ShoppingCartListener {
+public class OrderController implements PosController, ShoppingCartListener, ActionListener {
 
     private PosUI ui;
     private WooPOS app;
@@ -87,15 +87,6 @@ public class OrderController implements ActionListener, PosController, ShoppingC
         cart.addDiscountPercentage(discountPercentage);
     }
 
-    /**
-     * Forwards the list of products to View in order to render UI buttons for
-     * adding Products to Shopping Cart.
-     */
-    private void generateUIProductButtons() {
-
-        this.ui.generateProductButtons(app.getBackend().getProducts(), this);
-
-    }
 
     /**
      * event listener for UI product button clicks.
@@ -127,7 +118,8 @@ public class OrderController implements ActionListener, PosController, ShoppingC
     @Override
     public void onPosStartup(WooPOS applicationContext) {
 
-        this.generateUIProductButtons();
+        this.ui.generateProductButtons(app.getBackend().getProducts(), this);
+        
     }
 
     @Override
@@ -135,6 +127,10 @@ public class OrderController implements ActionListener, PosController, ShoppingC
 
     }
 
+    /**
+     * Event listener is triggered when shopping cart's contents get updated.
+     * @param shoppingCart 
+     */
     @Override
     public void onShoppingCartUpdated(ShoppingCart shoppingCart) {
 
