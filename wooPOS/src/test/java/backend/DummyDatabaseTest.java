@@ -6,17 +6,17 @@
 package backend;
 
 import application.WooPOS;
-import controller.OrderController;
+import interfaces.PosBackend;
+import java.util.ArrayList;
 import java.util.List;
-import model.Order;
 import model.Product;
-import model.ShoppingCart;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import view.dummy.DummyView;
 
 /**
  *
@@ -24,7 +24,8 @@ import static org.junit.Assert.*;
  */
 public class DummyDatabaseTest {
     
-    private DummyDatabase db;
+    private WooPOS app;
+    private PosBackend db;
     
     public DummyDatabaseTest() {
     }
@@ -39,13 +40,13 @@ public class DummyDatabaseTest {
     
     @Before
     public void setUp() {
-        this.db = new DummyDatabase();
-        this.db.onPosStartup(new WooPOS());
+        this.app = new WooPOS(new DummyDatabase(), new DummyView(), new ArrayList<>());
+        this.db = this.app.getBackend();
     }
     
     @After
     public void tearDown() {
-        this.db.onPosClose(new WooPOS());
+        this.app.getBackend().onPosClose(this.app);
     }
 
  
@@ -54,6 +55,7 @@ public class DummyDatabaseTest {
         System.out.println("getProducts");
         
         List<Product> products = this.db.getProducts();
+
         assertEquals(20, products.size());
     }
 
@@ -86,21 +88,6 @@ public class DummyDatabaseTest {
         this.db.deleteProduct(prod);
         
         assertEquals(origSize, this.db.getProducts().size());
-    }
-
-    @Test
-    public void testCreateOrder() {
-        System.out.println("createOrder");
-        
-        OrderController cartController = new OrderController(new WooPOS());
-        ShoppingCart cart = cartController.getShoppingCart();
-        
-        cartController.addProduct(cart, new Product("Product 1", 15.0));
-        
-        Order testOrder = this.db.createOrder(cart);
-             
-        assertNotEquals(null, testOrder);
-
     }
 
     @Test

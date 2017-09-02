@@ -6,9 +6,8 @@
 package controller;
 
 import application.WooPOS;
-import controller.OrderController;
-import model.ShoppingCart;
-import model.Product;
+import backend.DummyDatabase;
+import java.util.ArrayList;
 import java.util.List;
 import model.Product;
 import model.ShoppingCart;
@@ -18,6 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import view.dummy.DummyView;
 
 /**
  *
@@ -25,6 +25,7 @@ import static org.junit.Assert.*;
  */
 public class ShoppingCartControllerTest {
 
+    private WooPOS app;
     private OrderController controller;
     private ShoppingCart cart;
 
@@ -42,7 +43,9 @@ public class ShoppingCartControllerTest {
     @Before
     public void setUp() {
 
-        this.controller = new OrderController(new WooPOS());
+        this.app = new WooPOS(new DummyDatabase(), new DummyView(), new ArrayList<>());
+        
+        this.controller = this.app.getOrderController();
         this.cart = controller.getShoppingCart();
 
     }
