@@ -6,13 +6,17 @@
 package controller;
 
 import application.WooPOS;
+import interfaces.PaymentMethod;
 import interfaces.PosController;
 import interfaces.PosUI;
 import interfaces.ShoppingCartListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import model.Order;
+import model.Payment;
 import model.Product;
 import model.ShoppingCart;
+import view.swing.buttons.PaymentButton;
 import view.swing.buttons.ProductButton;
 
 /**
@@ -86,6 +90,31 @@ public class OrderController implements PosController, ShoppingCartListener, Act
     public void applyDiscountPercentage(ShoppingCart cart, int discountPercentage) {
         cart.addDiscountPercentage(discountPercentage);
     }
+    
+    /**
+     * Creates a new Order from shoppingcart contents
+     * @param cart the cart to be turned into an order
+     * @return order 
+     */
+    public Order createOrder(ShoppingCart cart) {
+        
+        return new Order(cart.getProducts(), cart.getTotalPrice());
+        
+        // TODO: testaa tyhjällä korilla
+        
+    }
+    
+    public void createPayment(Order order, PaymentMethod paymentMethod) {
+        
+        Payment payment = paymentMethod.createPayment(order);
+        
+        if (payment != null) {
+            order.addPayment(payment);
+        }
+        
+        // TODO: testaa nollasummalla
+        
+    }
 
 
     /**
@@ -105,8 +134,10 @@ public class OrderController implements PosController, ShoppingCartListener, Act
 
                 break;
             case "create_payment":
-                // TODO: check the amount to be debited and pass it on to the
-                // appropriate payment method as indicated by the button pressed
+                PaymentButton pmtButton = (PaymentButton) event.getSource();
+                PaymentMethod pmtMethod =  pmtButton.getPaymentMethod();
+                
+                this.createPayment(this.createOrder(this.shoppingCart), pmtMethod);
                 
                 break;
             default:
@@ -119,6 +150,7 @@ public class OrderController implements PosController, ShoppingCartListener, Act
     public void onPosStartup(WooPOS applicationContext) {
 
         this.ui.generateProductButtons(app.getBackend().getProducts(), this);
+        this.ui.generatePaymentButtons(app.getPaymentMethods(), this);
         
     }
 
