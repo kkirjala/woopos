@@ -34,9 +34,7 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     public OrderController(WooPOS app) {
 
         this.app = app;
-        this.ui = app.getUi();
-
-        this.createShoppingCart();
+        this.ui = app.getUi();        
 
     }
 
@@ -157,6 +155,7 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
         this.ui.generateProductButtons(app.getBackend().getProducts(), this);
         this.ui.generatePaymentButtons(app.getPaymentMethods(), this);
         
+        this.createShoppingCart();
     }
 
     @Override
