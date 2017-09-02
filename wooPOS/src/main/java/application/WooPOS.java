@@ -98,4 +98,10 @@ public class WooPOS {
         return ui;
     }
 
+    public OrderController getOrderController() {
+        return orderController;
+    }
+    
+    
+
 }
