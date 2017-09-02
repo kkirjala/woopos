@@ -170,7 +170,7 @@ public class OrderController implements PosController, ShoppingCartListener, Ord
     @Override
     public void onShoppingCartUpdated(ShoppingCart shoppingCart) {
 
-        this.ui.setShoppingCartContentDisplay(this.getShoppingCart());
+        this.ui.setShoppingCartContentDisplay(shoppingCart);
 
     }
 
