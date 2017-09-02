@@ -6,7 +6,9 @@
 package application;
 
 import backend.DummyDatabase;
+import interfaces.PaymentMethod;
 import java.util.ArrayList;
+import paymentmethods.Cash;
 import view.swing.MainUI;
 
 /**
@@ -18,7 +20,10 @@ public class Main {
     public static void main(String[] args) {
         // application entrypoint
 
-        WooPOS pos = new WooPOS(new DummyDatabase(), new MainUI(), new ArrayList<>());
+        ArrayList<PaymentMethod> methods = new ArrayList<>();
+        methods.add(new Cash());
+        
+        WooPOS pos = new WooPOS(new DummyDatabase(), new MainUI(), methods);
         
     }
 
