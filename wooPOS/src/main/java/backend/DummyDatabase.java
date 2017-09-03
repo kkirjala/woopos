@@ -48,7 +48,12 @@ public class DummyDatabase implements PosBackend {
      * {@inheritDoc}
      */
     public List<Product> getProducts() {
-        return this.products;
+        if (this.products != null) {
+            return this.products;
+        } else {
+            return new ArrayList<Product>();
+        }
+
     }
 
     /**
@@ -69,8 +74,7 @@ public class DummyDatabase implements PosBackend {
      * {@inheritDoc}
      */
     public Order createOrder(ShoppingCart shoppingCart) {
-        // TODO: unfinished
-        return new Order(this.products, new Random().nextDouble() * 100);
+        return new Order(shoppingCart.getProducts(), shoppingCart.getTotalPrice());
     }
 
     /**
