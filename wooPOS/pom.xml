@@ -48,7 +48,7 @@
                 <configuration>
                     <targetClasses>
                         <param>application.*</param>
-                        <param>backend.*</param>
+                        <param>backend.DummyDatabase</param>
                         <param>controller.*</param>                        
                         <param>interfaces.*</param>
                         <param>model.*</param>
