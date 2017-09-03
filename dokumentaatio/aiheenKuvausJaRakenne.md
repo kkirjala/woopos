@@ -4,16 +4,14 @@
 
 **Toiminnot**:
 
-- Uuden tuotteen perustaminen
-- Tuotteen varastosaldon päivitys
-- Varastotilanneraportin tulostus
 - Uuden tilauksen alustaminen
 - Tuotteen lisääminen avoimelle tilaukselle
-- Tuotteen poistaminen avoimelta tilaukselta
-- Avoimen tilauksen päättäminen ja kuittaaminen maksetuksi
-- Myyntipäivän lopetus ja myyntiraportin tulostus
-
 
 **Luokkakaavio**:
 
 ![Alt text](/dokumentaatio/woopos_class_diagram.png "Luokkakaavio / Class Diagram")
+
+
+**Rakennekuvaus**:
+
+Ohjelman keskeinen osa on OrderController, joka huolehtii ostoskorin alustuksesta, uuden tilauksen luomisesta (ostoskorin sisällön pohjalta) ja maksun kirjaamisesta avoimelle tilaukselle. OrderController kuuntelee käyttöliittymän näppäinpainallus-eventtejä sekä ostoskorin ja tilauksen lähettämiä eventtejä (esim. kun ostoskorin sisältö muuttuu, kun tilaus kuittaantuu maksetuksi) ja välittää nämä eteenpäin käyttöliittymälle. WooPOS() on sovelluksen konteksti, joka alustaa kaikki tarvittavat komponentit (tietokanta/backend, controller, käyttöliittymä) ja jonka kautta eri komponentit saavat viitteet toisiinsa.
