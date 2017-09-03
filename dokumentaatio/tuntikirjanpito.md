@@ -8,3 +8,6 @@ Päivä | Tunnit | Kuvaus
 23.08.2017 | 2.0h | Arkkitehtuurin uudelleenmietintää
 25.08.2017 | 3.0h | Refaktorointi (selkeämpi MVC -rakenne)
 27.08.2017 | 2.0h | Lisää luokkia, GUI:n työstö aloitettu.
+31.08.2017 | 3.0h | Arkkitehtuurisuunnittelu. Uudet luokat.
+01.09.2017 | 5.0h | Luokkia, GUI tehty perustoiminallisuuden osalta valmiiksi.
+
