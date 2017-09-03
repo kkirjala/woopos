@@ -5,7 +5,9 @@
 **Toiminnot**:
 
 - Uuden tilauksen alustaminen
+![Alt text](/dokumentaatio/sequence_diagrams/product_to_cart.png "Sekvenssikaavio / Sequence Diagram")
 - Tuotteen lisääminen avoimelle tilaukselle
+![Alt text](/dokumentaatio/sequence_diagrams/create_payment.png "Sekvenssikaavio / Sequence Diagram")
 
 **Luokkakaavio**:
 
